@@ -1,0 +1,14 @@
+machine:
+  timezone:
+    Asia/Tokyo
+  ruby:
+    version:
+      2.4.2
+dependencies:
+  override:
+      - bundle install:
+          timeout: 180
+
+test:
+  override:
+      - bundle exec rake test
