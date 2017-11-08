@@ -44,11 +44,13 @@ GEM
     concurrent-ruby (1.0.5)
     crass (1.0.2)
     erubi (1.7.0)
+    erubis (2.7.0)
     ffi (1.9.18)
     globalid (0.4.1)
       activesupport (>= 4.2.0)
     i18n (0.9.1)
       concurrent-ruby (~> 1.0)
+    json_schema (0.17.0)
     listen (3.1.5)
       rb-fsevent (~> 0.9, >= 0.9.4)
       rb-inotify (~> 0.9, >= 0.9.7)
@@ -66,6 +68,9 @@ GEM
     nio4r (2.1.0)
     nokogiri (1.8.1)
       mini_portile2 (~> 2.3.0)
+    prmd (0.13.0)
+      erubis (~> 2.7)
+      json_schema (~> 0.3, >= 0.3.1)
     puma (3.10.0)
     rack (2.0.3)
     rack-cors (1.0.2)
@@ -131,6 +136,7 @@ DEPENDENCIES
   byebug
   listen (>= 3.0.5, < 3.2)
   mysql2 (>= 0.3.18, < 0.5)
+  prmd
   puma (~> 3.7)
   rack-cors
   rails (~> 5.1.4)
