@@ -49,6 +49,6 @@ test:
 #
 production:
   <<: *default
-  database: QaAppServer_production
-  username: QaAppServer
-  password: <%= ENV['QAAPPSERVER_DATABASE_PASSWORD'] %>
+  database: heroku_3ba77954ef2b71b
+  username: b488a9dcffee09
+  password: <%= ENV['DATABASE_PASSWORD'] %>
