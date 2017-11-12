@@ -43,4 +43,9 @@ class ApplicationController < ActionController::API
   def authenticate_error
     render json: { error: t('devise.failure.unauthenticated') }, status: 401
   end
+
+  rescue_from CanCan::AccessDenied do |exception|
+    format.json { render json: {message: exception.message}, status: :unauthorized }
+    Rails.logger.debug "Access denied on #{exception.action} #{exception.subject.inspect}"
+  end
 end

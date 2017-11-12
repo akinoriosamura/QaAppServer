@@ -8,6 +8,8 @@ class User < ApplicationRecord
   has_many :comments, dependent: :destroy
   validates :name, :email, presence: true
 
+  enum role: {admin: 0, member: 1, professional: 2}
+
   def update_access_token!
     self.access_token = "#{self.id}:#{Devise.friendly_token}"
     save

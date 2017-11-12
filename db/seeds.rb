@@ -9,8 +9,9 @@ users = (1..10).map do
   User.create!(
     name: Faker::Name.name,
     email: Faker::Internet.email,
-    password: Faker::Internet.password
-  )
+    password: Faker::Internet.password,
+    role: 1
+    )
 end
 
 users = User.order(:created_at).take(6)

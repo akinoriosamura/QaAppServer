@@ -1,5 +1,6 @@
 module V1
   class PostsController < ApplicationController
+    authorize_resource
     skip_before_action :authenticate_user_from_token!# , only[:index, :show]
     before_action :set_post, only: [:show, :destroy, :update]
 

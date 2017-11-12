@@ -1,16 +1,18 @@
 module V1
   class UsersController < ApplicationController
+    load_and_authorize_resource
     skip_before_action :authenticate_user_from_token!# , only: [:create]
-    before_action :set_user, only: [:show, :destroy, :update]
+    # before_action :set_user, only: [:show, :destroy, :update]
 
     def index
-      users = User.all
-      render json: users, adapter: :json
+      # @users = User.all
+      render json: @users, adapter: :json
     end
 
     def show
-      @posts = @user.posts.all
-      render json: {user: @user, posts: @posts}, adapter: :json
+      # @posts = @user.posts.all
+      # render json: {user: @user, posts: @posts}, adapter: :json
+      render json: @user, adapter: :json
     end
 
     # POST
@@ -40,9 +42,9 @@ module V1
 
     private
 
-    def set_user
-      @user = User.find(params[:id])
-    end
+    # def set_user
+    #   @user = User.find(params[:id])
+    # end
 
     def user_params
       params.require(:user).permit(:name, :email, :password)
