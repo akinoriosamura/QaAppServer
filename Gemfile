@@ -30,6 +30,7 @@ gem 'rack-cors'
 gem 'faker'
 
 gem 'devise'
+gem 'devise_token_auth'
 gem 'omniauth'
 gem 'omniauth-facebook'
 

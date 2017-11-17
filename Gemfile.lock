@@ -57,6 +57,9 @@ GEM
       railties (>= 4.1.0, < 5.2)
       responders
       warden (~> 1.2.3)
+    devise_token_auth (0.1.42)
+      devise (> 3.5.2, <= 4.3)
+      rails (< 6)
     erubi (1.7.0)
     faker (1.8.4)
       i18n (~> 0.5)
@@ -171,6 +174,7 @@ DEPENDENCIES
   bcrypt (~> 3.1.7)
   byebug
   devise
+  devise_token_auth
   faker
   listen (>= 3.0.5, < 3.2)
   mysql2 (>= 0.3.18, < 0.5)

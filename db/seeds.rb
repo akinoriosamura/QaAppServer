@@ -9,27 +9,18 @@ users = (1..10).map do
   User.create!(
     name: Faker::Name.name,
     email: Faker::Internet.email,
-    password: Faker::Internet.password
   )
 end
 
-users = User.order(:created_at).take(6)
-50.times do
+users = User.order(:created_at).take(10)
+1.times do
   content = Faker::Lorem.sentence(5)
   users.each { |user| user.posts.create!(content: content) }
 end
 
 
-users = User.order(:created_at).take(6)
-# comments are for post_id = 2
-post_id = 2
-5.times do
+users = User.order(:created_at).take(10)
+1.times do
   content = Faker::Lorem.sentence(5)
-  users.each { |user| user.comments.create!(content: content, post_id: post_id) }
-end
-# comments are for post_id = 4
-post_id = 4
-5.times do
-  content = Faker::Lorem.sentence(5)
-  users.each { |user| user.comments.create!(content: content, post_id: post_id) }
+  users.each { |user| user.comments.create!(content: content, post_id: 2) }
 end

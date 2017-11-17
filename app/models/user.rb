@@ -1,16 +1,10 @@
-class User < ApplicationRecord
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable
-  # :recoverable, :rememberable, :trackable
-  devise :database_authenticatable, :registerable, :validatable# , :omniauthable
-  after_create :update_access_token!
-  has_many :posts, dependent: :destroy
-  has_many :comments, dependent: :destroy
-  validates :name, :email, presence: true
+class User < ActiveRecord::Base
+  # Include default devise modules.
+  devise :rememberable, :omniauthable
+  include DeviseTokenAuth::Concerns::User
 
-  def update_access_token!
-    self.access_token = "#{self.id}:#{Devise.friendly_token}"
-    save
-  end
+  has_many :comments
+  has_many :posts
+  validates :name, :email, presence: true
 
 end

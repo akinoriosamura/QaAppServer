@@ -1,6 +1,6 @@
 module V1
   class PostsController < ApplicationController
-    skip_before_action :authenticate_user_from_token!# , only[:index, :show]
+    # before_action :authenticate_user!
     before_action :set_post, only: [:show, :destroy, :update]
 
     def index

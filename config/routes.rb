@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  devise_for :users, only: []# , controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
+  mount_devise_token_auth_for 'User', at: 'auth', controllers: { omniauth_callbacks: 'v1/omniauth_callbacks' }
 
   namespace :v1, defaults: { format: :json } do
     resources :login, only: [:create], controller: :sessions
