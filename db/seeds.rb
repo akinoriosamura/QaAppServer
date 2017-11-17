@@ -19,9 +19,9 @@ users = User.order(:created_at).take(6)
 end
 
 
-users = User.order(:created_at).take(6)
+posts = Post.order(:created_at).take(6)
 1.times do
   content = Faker::Lorem.sentence(5)
-  post_id = 2
-  users.each { |user| user.comments.create!(content: content, post_id: post_id) }
+  user_id = 2
+  posts.each { |post| post.comments.create!(content: content, user_id: user_id) }
 end
