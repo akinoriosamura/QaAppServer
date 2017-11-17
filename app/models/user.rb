@@ -3,8 +3,8 @@ class User < ActiveRecord::Base
   devise :rememberable, :omniauthable
   include DeviseTokenAuth::Concerns::User
 
-  has_many :comments
   has_many :posts
+  has_many :comments
   validates :name, :email, presence: true
 
 end
