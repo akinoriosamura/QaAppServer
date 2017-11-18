@@ -23,7 +23,7 @@ users = User.order(:created_at).take(10)
 users.each do |user|
     posts = user.posts.order(:created_at).take(3)
     posts.each do |post|
-        post_id = post[0].id
+        post_id = post.id
         content = Faker::Lorem.sentence(5)
         user.comments.create!(content: content, post_id: post_id)
     end
