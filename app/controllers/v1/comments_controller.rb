@@ -1,7 +1,7 @@
 module V1
   class CommentsController < ApplicationController
     # before_action :authenticate_user!
-    authorize_resource
+    # authorize_resource
     before_action :set_comment, only: [:show, :destroy, :update]
 
     def show

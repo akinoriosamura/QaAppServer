@@ -1,7 +1,7 @@
 module V1
   class PostsController < ApplicationController
     # before_action :authenticate_user!
-    authorize_resource
+    # authorize_resource
     before_action :set_post, only: [:show, :destroy, :update]
 
     def index
