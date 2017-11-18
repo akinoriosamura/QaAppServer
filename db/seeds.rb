@@ -13,16 +13,18 @@ users = (1..10).map do
 end
 
 users = User.order(:created_at)
-4.times do
+10.times do
   content = Faker::Lorem.sentence(5)
   users.each { |user| user.posts.create!(content: content) }
 end
 
 
-users = User.order(:created_at).take(5)
+users = User.order(:created_at).take(10)
 users.each do |user|
-    post = user.posts.order(:created_at).take(1)
-    post_id = post[0].id
-    content = Faker::Lorem.sentence(5)
-    user.comments.create!(content: content, post_id: post_id)
+    posts = user.posts.order(:created_at).take(3)
+    posts.each do |post|
+        post_id = post[0].id
+        content = Faker::Lorem.sentence(5)
+        user.comments.create!(content: content, post_id: post_id)
+    end
 end
