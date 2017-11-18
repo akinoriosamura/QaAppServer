@@ -1,11 +1,10 @@
 module V1
   class UsersController < ApplicationController
     # before_action :authenticate_user!
-    before_action :set_user, only: [:show, :destroy, :update]
+    load_and_authorize_resource
 
     def index
-      users = User.all
-      render json: users, adapter: :json
+      render json: @users, adapter: :json
     end
 
     def show
@@ -40,12 +39,8 @@ module V1
 
     private
 
-    def set_user
-      @user = User.find(params[:id])
-    end
-
     def user_params
-      params.require(:user).permit(:name, :email, :password)
+      params.require(:user).permit(:name, :email, :password, :role)
     end
   end
 end
