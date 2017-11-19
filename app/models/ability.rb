@@ -10,10 +10,15 @@ class Ability
     # administer
     if user.admin?
         can :manage, :all
-    elsif user.member? || user.professional?
+    elsif user.member?
+        can [:create, :index, :show], :all
+        can [:update, :destroy], User, id: user.id
+        can [:update, :destroy], Post, user_id: user.id
+    elsif user.professional?
         can [:create, :index, :show], :all
         can [:update, :destroy], User, id: user.id
         can [:update, :destroy], [Post, Comment], user_id: user.id
+
     end
   end
 end
