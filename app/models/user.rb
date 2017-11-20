@@ -3,8 +3,8 @@ class User < ActiveRecord::Base
   devise :rememberable, :omniauthable
   include DeviseTokenAuth::Concerns::User
 
-  has_many :posts
-  has_many :comments
+  has_many :posts, dependent: :destroy
+  has_many :comments, dependent: :destroy
   validates :name, presence: true, length: { maximum: 50}
   validates :document, length: { maximum: 1000}, allow_nil: true
   # β版ではメアドの編集はなし
