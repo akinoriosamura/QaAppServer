@@ -14,6 +14,7 @@ module V1
 
     # POST
     # Create an user
+    """
     def create
       @user = User.new user_params
 
@@ -23,6 +24,7 @@ module V1
         render json: { error: t('user_create_error') }, status: :unprocessable_entity
       end
     end
+    """
 
     def update
       if @user.update(user_params)
@@ -40,7 +42,7 @@ module V1
     private
 
     def user_params
-      params.require(:user).permit(:name, :email, :password, :role)
+      params.require(:user).permit(:name, :document, :l_price)
     end
   end
 end

@@ -6,6 +6,7 @@ class User < ActiveRecord::Base
   has_many :posts
   has_many :comments
   validates :name, presence: true, length: { maximum: 50}
+  validates :document, length: { maximum: 1000}, allow_nil: true
   # β版ではメアドの編集はなし
   """
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
