@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171120050536) do
+ActiveRecord::Schema.define(version: 20171120050516) do
 
   create_table "comments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.text "content"
@@ -50,7 +50,6 @@ ActiveRecord::Schema.define(version: 20171120050536) do
     t.integer "role"
     t.text "document"
     t.integer "l_price"
-    t.integer "view_flg"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["uid", "provider"], name: "index_users_on_uid_and_provider", unique: true
   end
