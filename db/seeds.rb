@@ -9,7 +9,7 @@ users = (1..10).map do
   User.create!(
     name: Faker::Name.name,
     email: Faker::Internet.email,
-    role: 1
+    role: 0
   )
 end
 
