@@ -6,7 +6,6 @@ class Ability
     user ||= User.new
     # default permission
     cannot :manage, :all
-    can :access, :rails_admin
 
     # administer
     if user.member?
@@ -22,8 +21,9 @@ class Ability
         can [:create, :index, :show], :all
         can [:update, :destroy], User, id: user.id
         can [:update, :destroy], [Post, Comment], user_id: user.id
+    # only admin can manage administer page "/admin"
+    elsif user.admin?
+        can :manage, :all
     end
-
-
   end
 end

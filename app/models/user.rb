@@ -15,6 +15,6 @@ class User < ActiveRecord::Base
   uniqueness: { case_sensitive: false }
   """
 
-  enum role: {member: 0, questioner: 1, professional: 2}
+  enum role: {member: 0, questioner: 1, professional: 2, admin: 10}
 
 end
