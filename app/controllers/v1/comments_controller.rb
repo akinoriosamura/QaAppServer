@@ -5,7 +5,12 @@ module V1
     before_action :set_comment, only: [:show, :destroy, :update]
 
     def show
-      render json: @comment, adapter: :json
+      @comment[:pv] += 1
+      if @comment.save
+        render json: @comment, adapter: :json, status: 200
+      else
+        render json: { error: @comment.errors }, status: 422
+      end
     end
 
     def create
@@ -38,7 +43,7 @@ module V1
 
     # get content, user_id adn post_id from front.
     def comment_params
-      params.require(:comment).permit(:content, :user_id, :post_id)
+      params.require(:comment).permit(:content, :user_id, :post_id, :pv)
     end
   end
 end
