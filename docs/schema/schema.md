@@ -1,4 +1,253 @@
 
+## <a name="resource-comment">Comment</a>
+
+Stability: `prototype`
+
+FIXME
+
+### Attributes
+
+| Name | Type | Description | Example |
+| ------- | ------- | ------- | ------- |
+| **comment:content** | *string* | content of comment | `"example"` |
+| **comment:id** | *uuid* | unique identifier of comment | `"01234567-89ab-cdef-0123-456789abcdef"` |
+| **comment:post_id** | *number* | post number | `42.0` |
+| **comment:user_id** | *number* | author number | `42.0` |
+| **comments** | *array* | comment list | `[{"id":"01234567-89ab-cdef-0123-456789abcdef","content":"example","user_id":42.0,"post_id":42.0}]` |
+| **content** | *string* | content of comment | `"example"` |
+| **id** | *uuid* | unique identifier of comment | `"01234567-89ab-cdef-0123-456789abcdef"` |
+| **post_id** | *number* | post number | `42.0` |
+| **user_id** | *number* | author number | `42.0` |
+
+### <a name="link-POST-comment-/comments">Comment Create</a>
+
+Create a new comment.
+
+```
+POST /comments
+```
+
+#### Optional Parameters
+
+| Name | Type | Description | Example |
+| ------- | ------- | ------- | ------- |
+| **comment:content** | *string* | content of comment | `"example"` |
+| **comment:id** | *uuid* | unique identifier of comment | `"01234567-89ab-cdef-0123-456789abcdef"` |
+| **comment:post_id** | *number* | post number | `42.0` |
+| **comment:user_id** | *number* | author number | `42.0` |
+
+
+#### Curl Example
+
+```bash
+$ curl -n -X POST /comments \
+  -d '{
+  "comment": {
+    "id": "01234567-89ab-cdef-0123-456789abcdef",
+    "content": "example",
+    "user_id": 42.0,
+    "post_id": 42.0
+  }
+}' \
+  -H "Content-Type: application/json"
+```
+
+
+#### Response Example
+
+```
+HTTP/1.1 201 Created
+```
+
+```json
+{
+  "id": "01234567-89ab-cdef-0123-456789abcdef",
+  "content": "example",
+  "user_id": 42.0,
+  "post_id": 42.0,
+  "comment": {
+    "id": "01234567-89ab-cdef-0123-456789abcdef",
+    "content": "example",
+    "user_id": 42.0,
+    "post_id": 42.0
+  },
+  "comments": [
+    {
+      "id": "01234567-89ab-cdef-0123-456789abcdef",
+      "content": "example",
+      "user_id": 42.0,
+      "post_id": 42.0
+    }
+  ]
+}
+```
+
+### <a name="link-DELETE-comment-/comments/{(%23%2Fdefinitions%2Fcomment%2Fdefinitions%2Fidentity)}">Comment Delete</a>
+
+Delete an existing comment.
+
+```
+DELETE /comments/{comment_id}
+```
+
+
+#### Curl Example
+
+```bash
+$ curl -n -X DELETE /comments/$COMMENT_ID \
+  -H "Content-Type: application/json"
+```
+
+
+#### Response Example
+
+```
+HTTP/1.1 200 OK
+```
+
+```json
+{
+  "comment": {
+    "id": "01234567-89ab-cdef-0123-456789abcdef",
+    "content": "example",
+    "user_id": 42.0,
+    "post_id": 42.0
+  }
+}
+```
+
+### <a name="link-GET-comment-/comments/{(%23%2Fdefinitions%2Fcomment%2Fdefinitions%2Fidentity)}">Comment Info</a>
+
+Info for existing comment.
+
+```
+GET /comments/{comment_id}
+```
+
+
+#### Curl Example
+
+```bash
+$ curl -n /comments/$COMMENT_ID
+```
+
+
+#### Response Example
+
+```
+HTTP/1.1 200 OK
+```
+
+```json
+{
+  "comment": {
+    "id": "01234567-89ab-cdef-0123-456789abcdef",
+    "content": "example",
+    "user_id": 42.0,
+    "post_id": 42.0
+  }
+}
+```
+
+### <a name="link-GET-comment-/comments">Comment List</a>
+
+List existing comments.
+
+```
+GET /comments
+```
+
+
+#### Curl Example
+
+```bash
+$ curl -n /comments
+```
+
+
+#### Response Example
+
+```
+HTTP/1.1 200 OK
+```
+
+```json
+{
+  "comments": [
+    {
+      "id": "01234567-89ab-cdef-0123-456789abcdef",
+      "content": "example",
+      "user_id": 42.0,
+      "post_id": 42.0
+    }
+  ]
+}
+```
+
+### <a name="link-PATCH-comment-/comments/{(%23%2Fdefinitions%2Fcomment%2Fdefinitions%2Fidentity)}">Comment Update</a>
+
+Update an existing comment.
+
+```
+PATCH /comments/{comment_id}
+```
+
+#### Optional Parameters
+
+| Name | Type | Description | Example |
+| ------- | ------- | ------- | ------- |
+| **comment:content** | *string* | content of comment | `"example"` |
+| **comment:id** | *uuid* | unique identifier of comment | `"01234567-89ab-cdef-0123-456789abcdef"` |
+| **comment:post_id** | *number* | post number | `42.0` |
+| **comment:user_id** | *number* | author number | `42.0` |
+
+
+#### Curl Example
+
+```bash
+$ curl -n -X PATCH /comments/$COMMENT_ID \
+  -d '{
+  "comment": {
+    "id": "01234567-89ab-cdef-0123-456789abcdef",
+    "content": "example",
+    "user_id": 42.0,
+    "post_id": 42.0
+  }
+}' \
+  -H "Content-Type: application/json"
+```
+
+
+#### Response Example
+
+```
+HTTP/1.1 200 OK
+```
+
+```json
+{
+  "id": "01234567-89ab-cdef-0123-456789abcdef",
+  "content": "example",
+  "user_id": 42.0,
+  "post_id": 42.0,
+  "comment": {
+    "id": "01234567-89ab-cdef-0123-456789abcdef",
+    "content": "example",
+    "user_id": 42.0,
+    "post_id": 42.0
+  },
+  "comments": [
+    {
+      "id": "01234567-89ab-cdef-0123-456789abcdef",
+      "content": "example",
+      "user_id": 42.0,
+      "post_id": 42.0
+    }
+  ]
+}
+```
+
+
 ## <a name="resource-post">Post</a>
 
 Stability: `prototype`

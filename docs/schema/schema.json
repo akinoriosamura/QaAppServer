@@ -4,6 +4,187 @@
     "object"
   ],
   "definitions": {
+    "comment": {
+      "$schema": "http://json-schema.org/draft-04/hyper-schema",
+      "title": "FIXME - Comment",
+      "description": "FIXME",
+      "stability": "prototype",
+      "strictProperties": true,
+      "type": [
+        "object"
+      ],
+      "definitions": {
+        "id": {
+          "description": "unique identifier of comment",
+          "readOnly": true,
+          "format": "uuid",
+          "type": [
+            "string"
+          ]
+        },
+        "content": {
+          "description": "content of comment",
+          "type": [
+            "string"
+          ]
+        },
+        "identity": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/comment/definitions/id"
+            }
+          ]
+        },
+        "user_id": {
+          "description": "author number",
+          "type": [
+            "number"
+          ]
+        },
+        "post_id": {
+          "description": "post number",
+          "type": [
+            "number"
+          ]
+        },
+        "comment": {
+          "description": "comment",
+          "type": [
+            "object"
+          ],
+          "properties": {
+            "id": {
+              "$ref": "#/definitions/comment/definitions/id"
+            },
+            "content": {
+              "$ref": "#/definitions/comment/definitions/content"
+            },
+            "user_id": {
+              "$ref": "#/definitions/comment/definitions/user_id"
+            },
+            "post_id": {
+              "$ref": "#/definitions/comment/definitions/post_id"
+            }
+          }
+        },
+        "comments": {
+          "description": "comment list",
+          "type": [
+            "array"
+          ],
+          "items": {
+            "$ref": "#/definitions/comment/definitions/comment"
+          }
+        }
+      },
+      "links": [
+        {
+          "description": "Create a new comment.",
+          "href": "/comments",
+          "method": "POST",
+          "rel": "create",
+          "schema": {
+            "properties": {
+              "comment": {
+                "$ref": "#/definitions/comment/definitions/comment"
+              }
+            },
+            "type": [
+              "object"
+            ]
+          },
+          "title": "Create"
+        },
+        {
+          "description": "Delete an existing comment.",
+          "href": "/comments/{(%23%2Fdefinitions%2Fcomment%2Fdefinitions%2Fidentity)}",
+          "method": "DELETE",
+          "rel": "destroy",
+          "targetSchema": {
+            "properties": {
+              "comment": {
+                "$ref": "#/definitions/comment/definitions/comment"
+              }
+            },
+            "type": [
+              "object"
+            ]
+          },
+          "title": "Delete"
+        },
+        {
+          "description": "Info for existing comment.",
+          "href": "/comments/{(%23%2Fdefinitions%2Fcomment%2Fdefinitions%2Fidentity)}",
+          "method": "GET",
+          "rel": "self",
+          "targetSchema": {
+            "properties": {
+              "comment": {
+                "$ref": "#/definitions/comment/definitions/comment"
+              }
+            },
+            "type": [
+              "object"
+            ]
+          },
+          "title": "Info"
+        },
+        {
+          "description": "List existing comments.",
+          "href": "/comments",
+          "method": "GET",
+          "rel": "instances",
+          "targetSchema": {
+            "properties": {
+              "comments": {
+                "$ref": "#/definitions/comment/definitions/comments"
+              }
+            },
+            "type": [
+              "object"
+            ]
+          },
+          "title": "List"
+        },
+        {
+          "description": "Update an existing comment.",
+          "href": "/comments/{(%23%2Fdefinitions%2Fcomment%2Fdefinitions%2Fidentity)}",
+          "method": "PATCH",
+          "rel": "update",
+          "schema": {
+            "properties": {
+              "comment": {
+                "$ref": "#/definitions/comment/definitions/comment"
+              }
+            },
+            "type": [
+              "object"
+            ]
+          },
+          "title": "Update"
+        }
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/definitions/comment/definitions/id"
+        },
+        "content": {
+          "$ref": "#/definitions/comment/definitions/content"
+        },
+        "user_id": {
+          "$ref": "#/definitions/comment/definitions/user_id"
+        },
+        "post_id": {
+          "$ref": "#/definitions/comment/definitions/post_id"
+        },
+        "comment": {
+          "$ref": "#/definitions/comment/definitions/comment"
+        },
+        "comments": {
+          "$ref": "#/definitions/comment/definitions/comments"
+        }
+      }
+    },
     "post": {
       "$schema": "http://json-schema.org/draft-04/hyper-schema",
       "title": "FIXME - Post",
@@ -392,6 +573,9 @@
     }
   },
   "properties": {
+    "comment": {
+      "$ref": "#/definitions/comment"
+    },
     "post": {
       "$ref": "#/definitions/post"
     },
