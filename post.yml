@@ -20,16 +20,6 @@ definitions:
   identity:
     anyOf:
     - "$ref": "/schemata/post#/definitions/id"
-  created_at:
-    description: when post was created
-    format: date-time
-    type:
-    - string
-  updated_at:
-    description: when post was updated
-    format: date-time
-    type:
-    - string
   user_id:
     description: author numer
     type:
@@ -43,10 +33,6 @@ definitions:
         "$ref": "/schemata/post#/definitions/id"
       content:
         "$ref": "/schemata/post#/definitions/content"
-      created_at:
-        "$ref": "/schemata/post#/definitions/created_at"
-      updated_at:
-        "$ref": "/schemata/post#/definitions/updated_at"
       user_id:
         "$ref": "/schemata/post#/definitions/user_id"
   posts:
@@ -54,7 +40,7 @@ definitions:
     type:
     - array
     items:
-      - "$ref": "/schemata/post#/definitions/post"
+      "$ref": "/schemata/post#/definitions/post"
 links:
 - description: Create a new post.
   href: "/posts"
@@ -116,10 +102,6 @@ properties:
     "$ref": "/schemata/post#/definitions/id"
   content:
     "$ref": "/schemata/post#/definitions/content"
-  created_at:
-    "$ref": "/schemata/post#/definitions/created_at"
-  updated_at:
-    "$ref": "/schemata/post#/definitions/updated_at"
   user_id:
     "$ref": "/schemata/post#/definitions/user_id"
   post:

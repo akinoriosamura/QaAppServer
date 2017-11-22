@@ -1,0 +1,143 @@
+---
+"$schema": http://json-schema.org/draft-04/hyper-schema
+title: FIXME - User
+description: FIXME
+stability: prototype
+strictProperties: true
+type:
+- object
+definitions:
+  id:
+    description: unique identifier of user
+    readOnly: true
+    format: uuid
+    type:
+    - string
+  name:
+    description: unique name of user
+    type:
+    - string
+  identity:
+    anyOf:
+    - "$ref": "/schemata/user#/definitions/id"
+  image:
+    description: unique image of user
+    type:
+    - object
+  email:
+    description: unique email of user
+    type:
+    - string
+  role:
+    description: role of user
+    type:
+    - number
+  document:
+    description: document of user
+    type:
+    - string
+  l_price:
+    description: lowest price of user
+    type:
+    - number
+  user:
+    description: user
+    type:
+    - object
+    properties:
+      id:
+        "$ref": "/schemata/user#/definitions/id"
+      name:
+        "$ref": "/schemata/user#/definitions/name"
+      image:
+        "$ref": "/schemata/user#/definitions/image"
+      email:
+        "$ref": "/schemata/user#/definitions/email"
+      role:
+        "$ref": "/schemata/user#/definitions/role"
+      document:
+        "$ref": "/schemata/user#/definitions/document"
+      l_price:
+        "$ref": "/schemata/user#/definitions/l_price"
+  users:
+    description: user list
+    type:
+    - array
+    items:
+      "$ref": "/schemata/user#/definitions/user"
+links:
+- description: Create a new user.
+  href: "/users"
+  method: POST
+  rel: create
+  schema:
+    properties:
+      user:
+        "$ref": "/schemata/user#/definitions/user"
+    type:
+    - object
+  title: Create
+- description: Delete an existing user.
+  href: "/users/{(%2Fschemata%2Fuser%23%2Fdefinitions%2Fidentity)}"
+  method: DELETE
+  rel: destroy
+  targetSchema:
+    properties:
+      user:
+        "$ref": "/schemata/user#/definitions/user"
+    type:
+    - object
+  title: Delete
+- description: Info for existing user.
+  href: "/users/{(%2Fschemata%2Fuser%23%2Fdefinitions%2Fidentity)}"
+  method: GET
+  rel: self
+  targetSchema:
+    properties:
+      user:
+        "$ref": "/schemata/user#/definitions/user"
+    type:
+    - object
+  title: Info
+- description: List existing users.
+  href: "/users"
+  method: GET
+  rel: instances
+  targetSchema:
+    properties:
+      users:
+        "$ref": "/schemata/user#/definitions/users"
+    type:
+    - object
+  title: List
+- description: Update an existing user.
+  href: "/users/{(%2Fschemata%2Fuser%23%2Fdefinitions%2Fidentity)}"
+  method: PATCH
+  rel: update
+  schema:
+    properties:
+      user:
+        "$ref": "/schemata/user#/definitions/user"
+    type:
+    - object
+  title: Update
+properties:
+  id:
+    "$ref": "/schemata/user#/definitions/id"
+  name:
+    "$ref": "/schemata/user#/definitions/name"
+  image:
+    "$ref": "/schemata/user#/definitions/image"
+  email:
+    "$ref": "/schemata/user#/definitions/email"
+  role:
+    "$ref": "/schemata/user#/definitions/role"
+  document:
+    "$ref": "/schemata/user#/definitions/document"
+  l_price:
+    "$ref": "/schemata/user#/definitions/l_price"
+  user:
+    "$ref": "/schemata/user#/definitions/user"
+  users:
+    "$ref": "/schemata/user#/definitions/users"
+id: schemata/user
