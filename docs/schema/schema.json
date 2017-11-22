@@ -1,0 +1,586 @@
+{
+  "$schema": "http://json-schema.org/draft-04/hyper-schema",
+  "type": [
+    "object"
+  ],
+  "definitions": {
+    "comment": {
+      "$schema": "http://json-schema.org/draft-04/hyper-schema",
+      "title": "FIXME - Comment",
+      "description": "FIXME",
+      "stability": "prototype",
+      "strictProperties": true,
+      "type": [
+        "object"
+      ],
+      "definitions": {
+        "id": {
+          "description": "unique identifier of comment",
+          "readOnly": true,
+          "format": "uuid",
+          "type": [
+            "string"
+          ]
+        },
+        "content": {
+          "description": "content of comment",
+          "type": [
+            "string"
+          ]
+        },
+        "identity": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/comment/definitions/id"
+            }
+          ]
+        },
+        "user_id": {
+          "description": "author number",
+          "type": [
+            "number"
+          ]
+        },
+        "post_id": {
+          "description": "post number",
+          "type": [
+            "number"
+          ]
+        },
+        "comment": {
+          "description": "comment",
+          "type": [
+            "object"
+          ],
+          "properties": {
+            "id": {
+              "$ref": "#/definitions/comment/definitions/id"
+            },
+            "content": {
+              "$ref": "#/definitions/comment/definitions/content"
+            },
+            "user_id": {
+              "$ref": "#/definitions/comment/definitions/user_id"
+            },
+            "post_id": {
+              "$ref": "#/definitions/comment/definitions/post_id"
+            }
+          }
+        },
+        "comments": {
+          "description": "comment list",
+          "type": [
+            "array"
+          ],
+          "items": {
+            "$ref": "#/definitions/comment/definitions/comment"
+          }
+        }
+      },
+      "links": [
+        {
+          "description": "Create a new comment.",
+          "href": "/comments",
+          "method": "POST",
+          "rel": "create",
+          "schema": {
+            "properties": {
+              "comment": {
+                "$ref": "#/definitions/comment/definitions/comment"
+              }
+            },
+            "type": [
+              "object"
+            ]
+          },
+          "title": "Create"
+        },
+        {
+          "description": "Delete an existing comment.",
+          "href": "/comments/{(%23%2Fdefinitions%2Fcomment%2Fdefinitions%2Fidentity)}",
+          "method": "DELETE",
+          "rel": "destroy",
+          "targetSchema": {
+            "properties": {
+              "comment": {
+                "$ref": "#/definitions/comment/definitions/comment"
+              }
+            },
+            "type": [
+              "object"
+            ]
+          },
+          "title": "Delete"
+        },
+        {
+          "description": "Info for existing comment.",
+          "href": "/comments/{(%23%2Fdefinitions%2Fcomment%2Fdefinitions%2Fidentity)}",
+          "method": "GET",
+          "rel": "self",
+          "targetSchema": {
+            "properties": {
+              "comment": {
+                "$ref": "#/definitions/comment/definitions/comment"
+              }
+            },
+            "type": [
+              "object"
+            ]
+          },
+          "title": "Info"
+        },
+        {
+          "description": "List existing comments.",
+          "href": "/comments",
+          "method": "GET",
+          "rel": "instances",
+          "targetSchema": {
+            "properties": {
+              "comments": {
+                "$ref": "#/definitions/comment/definitions/comments"
+              }
+            },
+            "type": [
+              "object"
+            ]
+          },
+          "title": "List"
+        },
+        {
+          "description": "Update an existing comment.",
+          "href": "/comments/{(%23%2Fdefinitions%2Fcomment%2Fdefinitions%2Fidentity)}",
+          "method": "PATCH",
+          "rel": "update",
+          "schema": {
+            "properties": {
+              "comment": {
+                "$ref": "#/definitions/comment/definitions/comment"
+              }
+            },
+            "type": [
+              "object"
+            ]
+          },
+          "title": "Update"
+        }
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/definitions/comment/definitions/id"
+        },
+        "content": {
+          "$ref": "#/definitions/comment/definitions/content"
+        },
+        "user_id": {
+          "$ref": "#/definitions/comment/definitions/user_id"
+        },
+        "post_id": {
+          "$ref": "#/definitions/comment/definitions/post_id"
+        },
+        "comment": {
+          "$ref": "#/definitions/comment/definitions/comment"
+        },
+        "comments": {
+          "$ref": "#/definitions/comment/definitions/comments"
+        }
+      }
+    },
+    "post": {
+      "$schema": "http://json-schema.org/draft-04/hyper-schema",
+      "title": "FIXME - Post",
+      "description": "FIXME",
+      "stability": "prototype",
+      "strictProperties": true,
+      "type": [
+        "object"
+      ],
+      "definitions": {
+        "id": {
+          "description": "unique identifier of post",
+          "readOnly": true,
+          "format": "uuid",
+          "type": [
+            "string"
+          ]
+        },
+        "content": {
+          "description": "content of post",
+          "type": [
+            "string"
+          ]
+        },
+        "identity": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/post/definitions/id"
+            }
+          ]
+        },
+        "user_id": {
+          "description": "author numer",
+          "type": [
+            "number"
+          ]
+        },
+        "post": {
+          "description": "post",
+          "type": [
+            "object"
+          ],
+          "properties": {
+            "id": {
+              "$ref": "#/definitions/post/definitions/id"
+            },
+            "content": {
+              "$ref": "#/definitions/post/definitions/content"
+            },
+            "user_id": {
+              "$ref": "#/definitions/post/definitions/user_id"
+            }
+          }
+        },
+        "posts": {
+          "description": "post list",
+          "type": [
+            "array"
+          ],
+          "items": {
+            "$ref": "#/definitions/post/definitions/post"
+          }
+        }
+      },
+      "links": [
+        {
+          "description": "Create a new post.",
+          "href": "/posts",
+          "method": "POST",
+          "rel": "create",
+          "schema": {
+            "properties": {
+              "post": {
+                "$ref": "#/definitions/post/definitions/post"
+              }
+            },
+            "type": [
+              "object"
+            ]
+          },
+          "title": "Create"
+        },
+        {
+          "description": "Delete an existing post.",
+          "href": "/posts/{(%23%2Fdefinitions%2Fpost%2Fdefinitions%2Fidentity)}",
+          "method": "DELETE",
+          "rel": "destroy",
+          "targetSchema": {
+            "properties": {
+              "post": {
+                "$ref": "#/definitions/post/definitions/post"
+              }
+            },
+            "type": [
+              "object"
+            ]
+          },
+          "title": "Delete"
+        },
+        {
+          "description": "Info for existing post.",
+          "href": "/posts/{(%23%2Fdefinitions%2Fpost%2Fdefinitions%2Fidentity)}",
+          "method": "GET",
+          "rel": "self",
+          "targetSchema": {
+            "properties": {
+              "post": {
+                "$ref": "#/definitions/post/definitions/post"
+              }
+            },
+            "type": [
+              "object"
+            ]
+          },
+          "title": "Info"
+        },
+        {
+          "description": "List existing posts.",
+          "href": "/posts",
+          "method": "GET",
+          "rel": "instances",
+          "targetSchema": {
+            "properties": {
+              "posts": {
+                "$ref": "#/definitions/post/definitions/posts"
+              }
+            },
+            "type": [
+              "object"
+            ]
+          },
+          "title": "List"
+        },
+        {
+          "description": "Update an existing post.",
+          "href": "/posts/{(%23%2Fdefinitions%2Fpost%2Fdefinitions%2Fidentity)}",
+          "method": "PATCH",
+          "rel": "update",
+          "schema": {
+            "properties": {
+              "post": {
+                "$ref": "#/definitions/post/definitions/post"
+              }
+            },
+            "type": [
+              "object"
+            ]
+          },
+          "title": "Update"
+        }
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/definitions/post/definitions/id"
+        },
+        "content": {
+          "$ref": "#/definitions/post/definitions/content"
+        },
+        "user_id": {
+          "$ref": "#/definitions/post/definitions/user_id"
+        },
+        "post": {
+          "$ref": "#/definitions/post/definitions/post"
+        },
+        "posts": {
+          "$ref": "#/definitions/post/definitions/posts"
+        }
+      }
+    },
+    "user": {
+      "$schema": "http://json-schema.org/draft-04/hyper-schema",
+      "title": "FIXME - User",
+      "description": "FIXME",
+      "stability": "prototype",
+      "strictProperties": true,
+      "type": [
+        "object"
+      ],
+      "definitions": {
+        "id": {
+          "description": "unique identifier of user",
+          "readOnly": true,
+          "format": "uuid",
+          "type": [
+            "string"
+          ]
+        },
+        "name": {
+          "description": "unique name of user",
+          "type": [
+            "string"
+          ]
+        },
+        "identity": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/user/definitions/id"
+            }
+          ]
+        },
+        "image": {
+          "description": "unique image of user",
+          "type": [
+            "object"
+          ]
+        },
+        "email": {
+          "description": "unique email of user",
+          "type": [
+            "string"
+          ]
+        },
+        "role": {
+          "description": "role of user",
+          "type": [
+            "number"
+          ]
+        },
+        "document": {
+          "description": "document of user",
+          "type": [
+            "string"
+          ]
+        },
+        "l_price": {
+          "description": "lowest price of user",
+          "type": [
+            "number"
+          ]
+        },
+        "user": {
+          "description": "user",
+          "type": [
+            "object"
+          ],
+          "properties": {
+            "id": {
+              "$ref": "#/definitions/user/definitions/id"
+            },
+            "name": {
+              "$ref": "#/definitions/user/definitions/name"
+            },
+            "image": {
+              "$ref": "#/definitions/user/definitions/image"
+            },
+            "email": {
+              "$ref": "#/definitions/user/definitions/email"
+            },
+            "role": {
+              "$ref": "#/definitions/user/definitions/role"
+            },
+            "document": {
+              "$ref": "#/definitions/user/definitions/document"
+            },
+            "l_price": {
+              "$ref": "#/definitions/user/definitions/l_price"
+            }
+          }
+        },
+        "users": {
+          "description": "user list",
+          "type": [
+            "array"
+          ],
+          "items": {
+            "$ref": "#/definitions/user/definitions/user"
+          }
+        }
+      },
+      "links": [
+        {
+          "description": "Create a new user.",
+          "href": "/users",
+          "method": "POST",
+          "rel": "create",
+          "schema": {
+            "properties": {
+              "user": {
+                "$ref": "#/definitions/user/definitions/user"
+              }
+            },
+            "type": [
+              "object"
+            ]
+          },
+          "title": "Create"
+        },
+        {
+          "description": "Delete an existing user.",
+          "href": "/users/{(%23%2Fdefinitions%2Fuser%2Fdefinitions%2Fidentity)}",
+          "method": "DELETE",
+          "rel": "destroy",
+          "targetSchema": {
+            "properties": {
+              "user": {
+                "$ref": "#/definitions/user/definitions/user"
+              }
+            },
+            "type": [
+              "object"
+            ]
+          },
+          "title": "Delete"
+        },
+        {
+          "description": "Info for existing user.",
+          "href": "/users/{(%23%2Fdefinitions%2Fuser%2Fdefinitions%2Fidentity)}",
+          "method": "GET",
+          "rel": "self",
+          "targetSchema": {
+            "properties": {
+              "user": {
+                "$ref": "#/definitions/user/definitions/user"
+              }
+            },
+            "type": [
+              "object"
+            ]
+          },
+          "title": "Info"
+        },
+        {
+          "description": "List existing users.",
+          "href": "/users",
+          "method": "GET",
+          "rel": "instances",
+          "targetSchema": {
+            "properties": {
+              "users": {
+                "$ref": "#/definitions/user/definitions/users"
+              }
+            },
+            "type": [
+              "object"
+            ]
+          },
+          "title": "List"
+        },
+        {
+          "description": "Update an existing user.",
+          "href": "/users/{(%23%2Fdefinitions%2Fuser%2Fdefinitions%2Fidentity)}",
+          "method": "PATCH",
+          "rel": "update",
+          "schema": {
+            "properties": {
+              "user": {
+                "$ref": "#/definitions/user/definitions/user"
+              }
+            },
+            "type": [
+              "object"
+            ]
+          },
+          "title": "Update"
+        }
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/definitions/user/definitions/id"
+        },
+        "name": {
+          "$ref": "#/definitions/user/definitions/name"
+        },
+        "image": {
+          "$ref": "#/definitions/user/definitions/image"
+        },
+        "email": {
+          "$ref": "#/definitions/user/definitions/email"
+        },
+        "role": {
+          "$ref": "#/definitions/user/definitions/role"
+        },
+        "document": {
+          "$ref": "#/definitions/user/definitions/document"
+        },
+        "l_price": {
+          "$ref": "#/definitions/user/definitions/l_price"
+        },
+        "user": {
+          "$ref": "#/definitions/user/definitions/user"
+        },
+        "users": {
+          "$ref": "#/definitions/user/definitions/users"
+        }
+      }
+    }
+  },
+  "properties": {
+    "comment": {
+      "$ref": "#/definitions/comment"
+    },
+    "post": {
+      "$ref": "#/definitions/post"
+    },
+    "user": {
+      "$ref": "#/definitions/user"
+    }
+  }
+}
