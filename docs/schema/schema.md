@@ -495,18 +495,18 @@ FIXME
 | **document** | *string* | document of user | `"example"` |
 | **email** | *string* | unique email of user | `"example"` |
 | **id** | *uuid* | unique identifier of user | `"01234567-89ab-cdef-0123-456789abcdef"` |
-| **image** | *object* | unique image of user |  |
+| **image** | *string* | unique image of user | `"example"` |
 | **l_price** | *number* | lowest price of user | `42.0` |
 | **name** | *string* | unique name of user | `"example"` |
-| **role** | *number* | role of user | `42.0` |
+| **role** | *string* | role of user | `"example"` |
 | **user:document** | *string* | document of user | `"example"` |
 | **user:email** | *string* | unique email of user | `"example"` |
 | **user:id** | *uuid* | unique identifier of user | `"01234567-89ab-cdef-0123-456789abcdef"` |
-| **user:image** | *object* | unique image of user |  |
+| **user:image** | *string* | unique image of user | `"example"` |
 | **user:l_price** | *number* | lowest price of user | `42.0` |
 | **user:name** | *string* | unique name of user | `"example"` |
-| **user:role** | *number* | role of user | `42.0` |
-| **users** | *array* | user list | `[{"id":"01234567-89ab-cdef-0123-456789abcdef","name":"example","image":null,"email":"example","role":42.0,"document":"example","l_price":42.0}]` |
+| **user:role** | *string* | role of user | `"example"` |
+| **users** | *array* | user list | `[{"id":"01234567-89ab-cdef-0123-456789abcdef","name":"example","image":"example","email":"example","role":"example","document":"example","l_price":42.0}]` |
 
 ### <a name="link-POST-user-/users">User Create</a>
 
@@ -523,10 +523,10 @@ POST /users
 | **user:document** | *string* | document of user | `"example"` |
 | **user:email** | *string* | unique email of user | `"example"` |
 | **user:id** | *uuid* | unique identifier of user | `"01234567-89ab-cdef-0123-456789abcdef"` |
-| **user:image** | *object* | unique image of user |  |
+| **user:image** | *string* | unique image of user | `"example"` |
 | **user:l_price** | *number* | lowest price of user | `42.0` |
 | **user:name** | *string* | unique name of user | `"example"` |
-| **user:role** | *number* | role of user | `42.0` |
+| **user:role** | *string* | role of user | `"example"` |
 
 
 #### Curl Example
@@ -537,9 +537,9 @@ $ curl -n -X POST /users \
   "user": {
     "id": "01234567-89ab-cdef-0123-456789abcdef",
     "name": "example",
-    "image": null,
+    "image": "example",
     "email": "example",
-    "role": 42.0,
+    "role": "example",
     "document": "example",
     "l_price": 42.0
   }
@@ -558,17 +558,17 @@ HTTP/1.1 201 Created
 {
   "id": "01234567-89ab-cdef-0123-456789abcdef",
   "name": "example",
-  "image": null,
+  "image": "example",
   "email": "example",
-  "role": 42.0,
+  "role": "example",
   "document": "example",
   "l_price": 42.0,
   "user": {
     "id": "01234567-89ab-cdef-0123-456789abcdef",
     "name": "example",
-    "image": null,
+    "image": "example",
     "email": "example",
-    "role": 42.0,
+    "role": "example",
     "document": "example",
     "l_price": 42.0
   },
@@ -576,9 +576,9 @@ HTTP/1.1 201 Created
     {
       "id": "01234567-89ab-cdef-0123-456789abcdef",
       "name": "example",
-      "image": null,
+      "image": "example",
       "email": "example",
-      "role": 42.0,
+      "role": "example",
       "document": "example",
       "l_price": 42.0
     }
@@ -614,9 +614,9 @@ HTTP/1.1 200 OK
   "user": {
     "id": "01234567-89ab-cdef-0123-456789abcdef",
     "name": "example",
-    "image": null,
+    "image": "example",
     "email": "example",
-    "role": 42.0,
+    "role": "example",
     "document": "example",
     "l_price": 42.0
   }
@@ -650,9 +650,9 @@ HTTP/1.1 200 OK
   "user": {
     "id": "01234567-89ab-cdef-0123-456789abcdef",
     "name": "example",
-    "image": null,
+    "image": "example",
     "email": "example",
-    "role": 42.0,
+    "role": "example",
     "document": "example",
     "l_price": 42.0
   }
@@ -687,9 +687,9 @@ HTTP/1.1 200 OK
     {
       "id": "01234567-89ab-cdef-0123-456789abcdef",
       "name": "example",
-      "image": null,
+      "image": "example",
       "email": "example",
-      "role": 42.0,
+      "role": "example",
       "document": "example",
       "l_price": 42.0
     }
@@ -712,10 +712,10 @@ PATCH /users/{user_id}
 | **user:document** | *string* | document of user | `"example"` |
 | **user:email** | *string* | unique email of user | `"example"` |
 | **user:id** | *uuid* | unique identifier of user | `"01234567-89ab-cdef-0123-456789abcdef"` |
-| **user:image** | *object* | unique image of user |  |
+| **user:image** | *string* | unique image of user | `"example"` |
 | **user:l_price** | *number* | lowest price of user | `42.0` |
 | **user:name** | *string* | unique name of user | `"example"` |
-| **user:role** | *number* | role of user | `42.0` |
+| **user:role** | *string* | role of user | `"example"` |
 
 
 #### Curl Example
@@ -726,9 +726,9 @@ $ curl -n -X PATCH /users/$USER_ID \
   "user": {
     "id": "01234567-89ab-cdef-0123-456789abcdef",
     "name": "example",
-    "image": null,
+    "image": "example",
     "email": "example",
-    "role": 42.0,
+    "role": "example",
     "document": "example",
     "l_price": 42.0
   }
@@ -747,17 +747,17 @@ HTTP/1.1 200 OK
 {
   "id": "01234567-89ab-cdef-0123-456789abcdef",
   "name": "example",
-  "image": null,
+  "image": "example",
   "email": "example",
-  "role": 42.0,
+  "role": "example",
   "document": "example",
   "l_price": 42.0,
   "user": {
     "id": "01234567-89ab-cdef-0123-456789abcdef",
     "name": "example",
-    "image": null,
+    "image": "example",
     "email": "example",
-    "role": 42.0,
+    "role": "example",
     "document": "example",
     "l_price": 42.0
   },
@@ -765,9 +765,9 @@ HTTP/1.1 200 OK
     {
       "id": "01234567-89ab-cdef-0123-456789abcdef",
       "name": "example",
-      "image": null,
+      "image": "example",
       "email": "example",
-      "role": 42.0,
+      "role": "example",
       "document": "example",
       "l_price": 42.0
     }

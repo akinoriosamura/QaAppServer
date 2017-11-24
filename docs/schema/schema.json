@@ -19,7 +19,7 @@
           "readOnly": true,
           "format": "uuid",
           "type": [
-            "string"
+            "number"
           ]
         },
         "content": {
@@ -200,7 +200,7 @@
           "readOnly": true,
           "format": "uuid",
           "type": [
-            "string"
+            "number"
           ]
         },
         "content": {
@@ -369,7 +369,7 @@
           "readOnly": true,
           "format": "uuid",
           "type": [
-            "string"
+            "number"
           ]
         },
         "name": {
@@ -388,7 +388,7 @@
         "image": {
           "description": "unique image of user",
           "type": [
-            "object"
+            "string"
           ]
         },
         "email": {
@@ -400,7 +400,7 @@
         "role": {
           "description": "role of user",
           "type": [
-            "number"
+            "string"
           ]
         },
         "document": {
