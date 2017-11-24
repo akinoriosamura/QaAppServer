@@ -12,7 +12,7 @@ definitions:
     readOnly: true
     format: uuid
     type:
-    - string
+    - number
   content:
     description: content of comment
     type:

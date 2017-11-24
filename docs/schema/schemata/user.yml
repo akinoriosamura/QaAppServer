@@ -12,7 +12,7 @@ definitions:
     readOnly: true
     format: uuid
     type:
-    - string
+    - number
   name:
     description: unique name of user
     type:
@@ -23,7 +23,7 @@ definitions:
   image:
     description: unique image of user
     type:
-    - object
+    - string
   email:
     description: unique email of user
     type:
@@ -31,7 +31,7 @@ definitions:
   role:
     description: role of user
     type:
-    - number
+    - string
   document:
     description: document of user
     type:
