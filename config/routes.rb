@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
+  mount_devise_token_auth_for 'User', at: 'auth', controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
-  mount_devise_token_auth_for 'User', at: 'auth', controllers: { omniauth_callbacks: 'v1/omniauth_callbacks' }
 
   namespace :v1, defaults: { format: :json } do
     resources :users, only: [:index, :create, :update, :destroy, :show]

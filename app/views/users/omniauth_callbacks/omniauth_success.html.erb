@@ -13,10 +13,13 @@
             used if this window was opened in an inAppBrowser using
             Cordova / PhoneGap)
       */
-      var data = <%= @resource.to_json.html_safe %>;
+      var data = <%= @resource.as_json(only: 'name').merge(@auth_params.as_json).to_json.html_safe %>;
       window.addEventListener("message", function(ev) {
         if (ev.data === "requestCredentials") {
-          ev.source.postMessage(data, '*');
+          ev.source.postMessage({
+            type: 'login',
+            data: data
+          }, '*');
           window.close();
         }
       });

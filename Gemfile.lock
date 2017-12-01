@@ -254,6 +254,7 @@ DEPENDENCIES
   mysql2 (>= 0.3.18, < 0.5)
   omniauth
   omniauth-facebook
+  omniauth-oauth2
   prmd!
   puma (~> 3.7)
   rack-cors

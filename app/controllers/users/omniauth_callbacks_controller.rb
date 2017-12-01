@@ -1,5 +1,6 @@
-module V1
+module Users
   class OmniauthCallbacksController < DeviseTokenAuth::OmniauthCallbacksController
+    include Devise::Controllers::Rememberable
 
     def omniauth_success
       get_resource_from_auth_hash
@@ -19,13 +20,13 @@ module V1
         # update_token_authをつけることでレスポンスヘッダーに認証情報を付与できる。
         update_auth_header
         yield @resource if block_given?
-        render json: @resource, status: :ok
+        # render json: @resource, status: :ok
       else
         render json: { message: "failed to login" }, status: 500
       end
 
       # これをそのままつかうと304になるので一旦コメントアウト
-      #render_data_or_redirect('deliverCredentials', @auth_params.as_json, @resource.as_json)
+      # render_data_or_redirect('deliverCredentials', @auth_params.as_json, @resource.as_json)
     end
 
     protected
