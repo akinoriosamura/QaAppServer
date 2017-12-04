@@ -16,6 +16,16 @@ module Users
 
       sign_in(:user, @resource, store: false, bypass: false)
 
+      # name、image、role、document、l_priceをupdateしないようにする。
+      if User.find(@resource.id)
+        user = User.find(@resource.id)
+        @resource.name = user.name
+        @resource.image = user.image
+        @resource.role = user.role
+        @resource.document = user.document
+        @resource.l_price = user.l_price
+      end
+
       if @resource.save!
         # update_token_authをつけることでレスポンスヘッダーに認証情報を付与できる。
         update_auth_header
