@@ -10,8 +10,8 @@ module V1
     end
 
     def show
-      @comments = @post.comments.includes(:user).all
-      render json: {post: @post, comment: @comments}, adapter: :json
+      @comment = @post.comments.includes(:user).first
+      render json: {post: @post, comment: @comment}, adapter: :json
     end
 
     def create
