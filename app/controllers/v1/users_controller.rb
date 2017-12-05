@@ -43,7 +43,7 @@ module V1
     private
 
     def user_params
-      params.require(:user).permit(:id, :name, :image, :email, :role, :document, :l_price)
+      params.require(:user).permit(:id, :name, :image, :email, :role, :document, :l_price, :target_id)
     end
   end
 end
