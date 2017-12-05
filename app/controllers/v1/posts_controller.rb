@@ -9,6 +9,16 @@ module V1
       render json: posts, adapter: :json
     end
 
+    def myquestions
+      myposts = Post.where(user_id: post_params[:user_id])
+      render json: myposts, adapter: :json
+    end
+
+    def myanswers
+      myanswers = Post.where(target_id: post_params[:user_id])
+      render json: myanswers, adapter: :json
+    end
+
     def show
       @comment = @post.comments.includes(:user).first
       render json: {post: @post, comment: @comment}, adapter: :json
