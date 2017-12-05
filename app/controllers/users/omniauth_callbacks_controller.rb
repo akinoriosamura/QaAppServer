@@ -17,7 +17,7 @@ module Users
       sign_in(:user, @resource, store: false, bypass: false)
 
       # name、image、role、document、l_priceをupdateしないようにする。
-      if User.find(@resource.id)
+      if @resource.id
         user = User.find(@resource.id)
         @resource.name = user.name
         @resource.image = user.image
