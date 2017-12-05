@@ -30,7 +30,6 @@ users.each do |user|
     posts.each do |post|
         post_id = post.id
         content = Faker::Lorem.sentence(5)
-        target_id = Faker::Number.number(2)
-        user.comments.create!(content: content, post_id: post_id, target_id: target_id)
+        user.comments.create!(content: content, post_id: post_id)
     end
 end
