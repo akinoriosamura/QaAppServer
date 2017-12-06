@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171205090401) do
+ActiveRecord::Schema.define(version: 20171206083516) do
 
   create_table "comments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.text "content"
@@ -19,7 +19,6 @@ ActiveRecord::Schema.define(version: 20171205090401) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "pv", default: 0
-    t.integer "target_id"
     t.index ["post_id"], name: "index_comments_on_post_id"
     t.index ["user_id"], name: "index_comments_on_user_id"
   end
@@ -52,12 +51,23 @@ ActiveRecord::Schema.define(version: 20171205090401) do
     t.datetime "updated_at", null: false
     t.integer "role", default: 0, null: false
     t.text "document"
-    t.integer "l_price"
+    t.integer "l_price", default: 0, null: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["uid", "provider"], name: "index_users_on_uid_and_provider", unique: true
+  end
+
+  create_table "views", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.bigint "user_id"
+    t.bigint "comment_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["comment_id"], name: "index_views_on_comment_id"
+    t.index ["user_id"], name: "index_views_on_user_id"
   end
 
   add_foreign_key "comments", "posts"
   add_foreign_key "comments", "users"
   add_foreign_key "posts", "users"
+  add_foreign_key "views", "comments"
+  add_foreign_key "views", "users"
 end

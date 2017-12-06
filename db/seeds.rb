@@ -33,3 +33,12 @@ users.each do |user|
         user.comments.create!(content: content, post_id: post_id)
     end
 end
+
+users = User.order(:created_at).take(10)
+users.each do |user|
+    comments = user.comments.order(:created_at).take(3)
+    comments.each do |comment|
+        comment_id = comment.id
+        user.views.create!(comment_id: comment_id)
+    end
+end

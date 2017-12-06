@@ -8,6 +8,8 @@ Rails.application.routes.draw do
     resources :comments, only: [:create, :update, :destroy, :show]
     post '/posts/myquestions', to: 'posts#myquestions'
     post '/posts/myanswers', to: 'posts#myanswers'
+    post '/posts/:id', to: 'posts#show'
+    post '/posts/comment/:id', to: 'posts#comment'
   end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
