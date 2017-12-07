@@ -29,16 +29,24 @@ gem 'rack-cors'
 
 gem 'faker'
 
+# authenticate
 gem 'devise'
 gem 'devise_token_auth'
 gem 'omniauth'
 gem 'omniauth-oauth2'
 gem 'omniauth-facebook'
 
+# manage
 gem 'cancancan'
 gem 'rails_admin'
 
+# json management
 gem 'prmd', github: 'interagent/prmd'
+
+# image uploader
+gem 'carrierwave'
+gem 'rmagick'
+gem 'config'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
