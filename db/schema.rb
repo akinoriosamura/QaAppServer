@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171207053042) do
+ActiveRecord::Schema.define(version: 20171208114406) do
 
   create_table "comments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.text "content"
@@ -60,6 +60,11 @@ ActiveRecord::Schema.define(version: 20171207053042) do
     t.integer "role", default: 0, null: false
     t.text "document"
     t.integer "l_price", default: 0, null: false
+    t.string "stripe_publishable_key"
+    t.string "stripe_provider"
+    t.string "stripe_uid"
+    t.string "stripe_access_code"
+    t.string "stripe_charge_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["uid", "provider"], name: "index_users_on_uid_and_provider", unique: true
   end
