@@ -23,14 +23,6 @@ ActiveRecord::Schema.define(version: 20171208114406) do
     t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
-  create_table "images", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string "title"
-    t.string "image"
-    t.string "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "posts", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.text "content"
     t.bigint "user_id"
@@ -60,10 +52,6 @@ ActiveRecord::Schema.define(version: 20171208114406) do
     t.integer "role", default: 0, null: false
     t.text "document"
     t.integer "l_price", default: 0, null: false
-    t.string "stripe_publishable_key"
-    t.string "stripe_provider"
-    t.string "stripe_uid"
-    t.string "stripe_access_code"
     t.string "stripe_charge_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["uid", "provider"], name: "index_users_on_uid_and_provider", unique: true

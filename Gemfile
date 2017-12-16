@@ -43,14 +43,9 @@ gem 'rails_admin'
 # json management
 gem 'prmd', github: 'interagent/prmd'
 
-# image uploader
-gem 'carrierwave'
-gem 'rmagick'
-gem 'config'
-
 # payment
 gem 'stripe'
-gem 'omniauth-stripe-connect'
+gem 'omniauth-stripe'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
