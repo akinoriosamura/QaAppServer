@@ -8,18 +8,18 @@ module V1
     end
 
     def update
+      upload_file = image_params[:file]
+      @image = {}
+      if upload_file != nil
+        @image[:user_id] = image_params[:user_id]
+        @image[:filename] = image_params[:filename]
+        @image[:file] = upload_file.read
+      end
       if Image.find_by(user_id: image_params[:user_id])
         @profile_image = Image.find_by(user_id: image_params[:user_id])
-        @profile_image.update(image_params)
+        @profile_image.update(@image)
         render json: @profile_image, adapter: :json, status: 200
       else
-        upload_file = image_params[:file]
-        @image = {}
-        if upload_file != nil
-          @image[:user_id] = image_params[:user_id]
-          @image[:filename] = image_params[:filename]
-          @image[:file] = upload_file.read
-        end
         @image = Image.new(@image)
         @image.save
         render json: @image, adapter: :json, status: 200
