@@ -7,7 +7,7 @@ Rails.application.routes.draw do
     resources :posts, only: [:index, :create, :update, :destroy, :show]
     resources :comments, only: [:create, :update, :destroy, :show]
     resources :charges, only: [:new, :create]
-    resources :images, only: [:create]
+    resources :images, only: [:show, :update]
     post '/posts/myquestions', to: 'posts#myquestions'
     post '/posts/myanswers', to: 'posts#myanswers'
     post '/posts/:id', to: 'posts#show'

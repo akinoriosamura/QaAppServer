@@ -2,8 +2,8 @@ production: &production
   facebook:
     key: 579874892344434
     secret: 297e84d0c230a98c9b1e58b0a93db4f9
-  stripe:
-    key: pk_test_OMdgx9Y4igUKyIc16n2tuudP
+  stripe_connect:
+    client_id: ca_Bn5Ucw2PyuYcXIKM5Bv0EXER5cRLfM4w
     secret: sk_test_Q5oO5mCLY9hVNNslozcHKxJE
 
 development: &development
