@@ -71,7 +71,7 @@ module Users
     def stripe_connect
       @user = User.find_by(id: 11)
       if @user.update_attributes({
-        stripe_uid: auth_hash.uid,
+        stripe_uid: auth_hash.uid, # stripe_user_id: this is used in directing payment
         stripe_access_code: auth_hash.credentials.token,
         stripe_publishable_key: auth_hash.info.stripe_publishable_key
       })

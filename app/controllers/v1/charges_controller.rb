@@ -6,6 +6,7 @@ module V1
     end
 
     def create
+      byebug
       # POSTで値段、user情報、amount、決済先情報が必要
       @amount = params[:l_price]
       @application_fee = (@amount * 0.1).to_i
@@ -21,11 +22,13 @@ module V1
         @user.save
       end
 
-      charges = Stripe::Charge.create(
+      charges = Stripe::Charge.create({
           :customer => @user.stripe_charge_id,
           :amount => @amount,
           :description => 'Question charge',
           :currency => 'jpy',
+          :application_fee => @application_fee
+          }, :stripe_account => @user.stripe_uid
       )
 
     rescue Stripe::CardError => e

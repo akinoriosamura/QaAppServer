@@ -6,6 +6,7 @@ class User < ActiveRecord::Base
   has_many :posts, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :views, dependent: :destroy
+  has_many :images, dependent: :destroy
   validates :name, presence: true, length: { maximum: 50}
   validates :document, length: { maximum: 1000}, allow_nil: true
   validates :l_price, numericality: { only_integer: true }
