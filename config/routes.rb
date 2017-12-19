@@ -6,12 +6,13 @@ Rails.application.routes.draw do
     resources :users, only: [:index, :create, :update, :destroy, :show]
     resources :posts, only: [:index, :create, :update, :destroy, :show]
     resources :comments, only: [:create, :update, :destroy, :show]
-    resources :charges, only: [:new, :create]
+    resources :charges, only: [:new, :create, :charge]
     resources :images, only: [:show, :update]
     post '/posts/myquestions', to: 'posts#myquestions'
     post '/posts/myanswers', to: 'posts#myanswers'
     post '/posts/:id', to: 'posts#show'
     post '/posts/comment/:id', to: 'posts#comment'
+    post '/charges/charge', to: 'charges#charge'
   end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

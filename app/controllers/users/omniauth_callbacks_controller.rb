@@ -69,7 +69,7 @@ module Users
 
     # stripe connectの必要トークンなどをuserをアップデートし保存
     def stripe_connect
-      @user = User.find_by(id: 11)
+      @user = User.find_by(id: 5)
       if @user.update_attributes({
         stripe_uid: auth_hash.uid, # stripe_user_id: this is used in directing payment
         stripe_access_code: auth_hash.credentials.token,

@@ -20,7 +20,7 @@ users = User.order(:created_at)
 10.times do
   content = Faker::Lorem.sentence(5)
   target_id = Faker::Number.number(2)
-  users.each { |user| user.posts.create!(content: content, target_id: target_id) }
+  users.each { |user| user.posts.create!(content: content, target_id: target_id, price: 100) }
 end
 
 
