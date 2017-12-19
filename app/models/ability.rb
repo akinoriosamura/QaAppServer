@@ -10,17 +10,26 @@ class Ability
     # administer
     if user.member?
         can [:index, :show], :all
+        can [:myquestions], Post, user_id: user.id
+        can [:myanswers], Post, target_id: user.id
         can [:update, :destroy], User, id: user.id
+        can [:update], Image, user_id: user.id
 
     elsif user.questioner?
         can [:create, :index, :show], :all
+        can [:myquestions], Post, user_id: user.id
+        can [:myanswers], Post, target_id: user.id
         can [:update, :destroy], User, id: user.id
         can [:update, :destroy], Post, user_id: user.id
+        can [:update], Image, user_id: user.id
 
-    elsif user.professional?
+    elsif user.specialist?
         can [:create, :index, :show], :all
+        can [:myquestions], Post, user_id: user.id
+        can [:myanswers], Post, target_id: user.id
         can [:update, :destroy], User, id: user.id
         can [:update, :destroy], [Post, Comment], user_id: user.id
+        can [:update], Image, user_id: user.id
     # only admin can manage administer page "/admin"
     elsif user.admin?
         can :manage, :all

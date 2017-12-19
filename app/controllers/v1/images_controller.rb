@@ -1,5 +1,7 @@
 module V1
   class ImagesController < ApplicationController
+    before_action :authenticate_user!
+    authorize_resource
     def show
       if Image.find_by(user_id: params[:id])
         @image = Image.find_by(user_id: params[:id])
