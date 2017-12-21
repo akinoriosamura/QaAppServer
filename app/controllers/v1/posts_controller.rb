@@ -1,8 +1,8 @@
 module V1
   class PostsController < ApplicationController
-    before_action :authenticate_user!
-    authorize_resource
+    before_action :authenticate_user!, only: [:myquestions, :myanswers, :comment, :create, :destroy, :update]
     before_action :set_post, only: [:show, :destroy, :update, :comment]
+    authorize_resource
 
     def index
       posts = Post.all

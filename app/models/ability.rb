@@ -6,6 +6,7 @@ class Ability
     user ||= User.new
     # default permission
     cannot :manage, :all
+    can [:index, :show], :all
 
     # administer
     if user.member?
@@ -17,6 +18,7 @@ class Ability
 
     elsif user.questioner?
         can [:create, :index, :show], :all
+        can [:comment], Post
         can [:myquestions], Post, user_id: user.id
         can [:myanswers], Post, target_id: user.id
         can [:update, :destroy], User, id: user.id
@@ -25,6 +27,7 @@ class Ability
 
     elsif user.specialist?
         can [:create, :index, :show], :all
+        can [:comment], Post
         can [:myquestions], Post, user_id: user.id
         can [:myanswers], Post, target_id: user.id
         can [:update, :destroy], User, id: user.id

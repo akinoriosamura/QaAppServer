@@ -15,6 +15,13 @@ module V1
         )
 
         @user.stripe_charge_id = customer.id
+        # role -> questioner or bothqs
+        role = @user.role
+        if role == "member"
+          @user.role = "questioner"
+        elsif role == "specialist"
+          @user.role = "bothqs"
+        end
         @user.save
       end
     rescue Stripe::CardError => e
@@ -32,7 +39,7 @@ module V1
           :customer => @questioner.stripe_charge_id,
           :amount => @amount,
           :description => 'Question charge',
-          :currency => 'jpy'
+          :currency => 'jpy',
           :application_fee => @application_fee
           }, :stripe_account => @specialist.stripe_uid
       )

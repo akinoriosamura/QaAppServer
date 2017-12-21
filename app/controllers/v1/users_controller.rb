@@ -1,6 +1,6 @@
 module V1
   class UsersController < ApplicationController
-    before_action :authenticate_user!
+    before_action :authenticate_user!, only: [:destroy, :update]
     load_and_authorize_resource
 
     def index
@@ -42,7 +42,7 @@ module V1
     private
 
     def user_params
-      params.require(:user).permit(:id, :name, :image, :email, :role, :document, :l_price)
+      params.require(:user).permit(:id, :name, :image, :role, :document, :l_price)
     end
   end
 end

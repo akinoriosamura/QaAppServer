@@ -17,7 +17,7 @@ class User < ActiveRecord::Base
   format: { with: VALID_EMAIL_REGEX },
   uniqueness: { case_sensitive: false }
   """
-
-  enum role: {member: 0, questioner: 1, specialist: 2, admin: 10}
+  # bothqs: questioner & specialist
+  enum role: {member: 0, questioner: 1, specialist: 2, bothqs: 3, admin: 10}
 
 end
