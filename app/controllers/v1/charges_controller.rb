@@ -15,13 +15,6 @@ module V1
         )
 
         @user.stripe_charge_id = customer.id
-        # role -> questioner or bothqs
-        role = @user.role
-        if role == "member"
-          @user.role = "questioner"
-        elsif role == "specialist"
-          @user.role = "bothqs"
-        end
         @user.save
       end
     rescue Stripe::CardError => e
