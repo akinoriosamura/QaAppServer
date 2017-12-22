@@ -2,9 +2,6 @@ module V1
   class ChargesController < ApplicationController
     before_action :authenticate_user!
 
-    def new
-    end
-
     def create
       @user = User.find_by(id: params[:user_id])
 
