@@ -1,6 +1,6 @@
 module V1
   class UsersController < ApplicationController
-    before_action :authenticate_user!, only: [:destroy, :update]
+    # before_action :authenticate_user!, only: [:destroy, :update]
     load_and_authorize_resource
 
     def index

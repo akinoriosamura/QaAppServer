@@ -16,6 +16,7 @@
       var data = <%= @resource.as_json(only: ['name', 'id']).merge(@auth_params.as_json).to_json.html_safe %>;
       window.addEventListener("message", function(ev) {
         if (ev.data === "requestCredentials") {
+          console.log("data in window ", data)
           ev.source.postMessage({
             type: 'login',
             data: data

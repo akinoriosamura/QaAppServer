@@ -26,7 +26,7 @@ class Ability
         can [:update], Image, user_id: user.id
 
     elsif user.specialist?
-        can [:create, :index, :show], :all
+        can [:index, :show], :all
         can [:comment], Post
         can [:create], Comment
         can [:myquestions], Post, user_id: user.id
@@ -36,7 +36,7 @@ class Ability
         can [:update], Image, user_id: user.id
 
     elsif user.bothqs?
-        can [:create, :index, :show], :all
+        can [:index, :show], :all
         can [:comment], Post
         can [:create], [Post, Comment]
         can [:myquestions], Post, user_id: user.id

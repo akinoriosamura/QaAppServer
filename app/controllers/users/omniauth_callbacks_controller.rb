@@ -36,6 +36,7 @@ module Users
           render json: { message: "failed to login" }, status: 500
         end
       elsif @resource.provider=='stripe_connect'
+        @resource.name="stripe_connect"
         stripe_connect
       end
 
