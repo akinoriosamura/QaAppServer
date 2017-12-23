@@ -25,11 +25,17 @@ module V1
       @questioner = User.find_by(id: params[:post_user_id])
       @specialist = User.find_by(id: params[:specialist_id])
 
+      # create token to connect customer_id and stripe_accoount_id
+      token = Stripe::Token.create(
+        { :customer => @questioner.stripe_charge_id },
+        { :stripe_account => @specialist.stripe_uid }
+      )
+
       charges = Stripe::Charge.create({
-          :customer => @questioner.stripe_charge_id,
           :amount => @amount,
           :description => 'Question charge',
           :currency => 'jpy',
+          :source => token,
           :application_fee => @application_fee
           }, :stripe_account => @specialist.stripe_uid
       )
