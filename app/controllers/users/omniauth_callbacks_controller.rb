@@ -70,7 +70,6 @@ module Users
 
     # stripe connectの必要トークンなどをuserをアップデートし保存
     def stripe_connect
-      byebug
       uid = omniauth_params['uid']
       @user = User.find_by(uid: uid)
       if @user.update_attributes({
