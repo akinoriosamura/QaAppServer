@@ -70,8 +70,9 @@ module Users
 
     # stripe connectの必要トークンなどをuserをアップデートし保存
     def stripe_connect
-      user_id = omniauth_params['user_id']
-      @user = User.find_by(id: user_id)
+      byebug
+      uid = omniauth_params['uid']
+      @user = User.find_by(uid: uid)
       if @user.update_attributes({
         stripe_uid: auth_hash.uid, # stripe_user_id: this is used in directing payment
         stripe_access_code: auth_hash.credentials.token,
