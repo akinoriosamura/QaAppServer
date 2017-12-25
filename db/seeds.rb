@@ -5,31 +5,40 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
 users = (1..10).map do
   User.create!(
     name: Faker::Name.name,
     email: Faker::Internet.email,
-    password: Faker::Internet.password
+    document: Faker::Lorem.sentence(2),
+    l_price: 300,
+    role: 0
   )
 end
 
-users = User.order(:created_at).take(6)
-50.times do
+users = User.order(:created_at)
+10.times do
   content = Faker::Lorem.sentence(5)
-  users.each { |user| user.posts.create!(content: content) }
+  target_id = Faker::Number.number(2)
+  users.each { |user| user.posts.create!(content: content, target_id: target_id, price: 100) }
 end
 
 
-users = User.order(:created_at).take(6)
-# comments are for post_id = 2
-post_id = 2
-5.times do
-  content = Faker::Lorem.sentence(5)
-  users.each { |user| user.comments.create!(content: content, post_id: post_id) }
+users = User.order(:created_at).take(10)
+users.each do |user|
+    posts = user.posts.order(:created_at).take(3)
+    posts.each do |post|
+        post_id = post.id
+        content = Faker::Lorem.sentence(5)
+        user.comments.create!(content: content, post_id: post_id)
+    end
 end
-# comments are for post_id = 4
-post_id = 4
-5.times do
-  content = Faker::Lorem.sentence(5)
-  users.each { |user| user.comments.create!(content: content, post_id: post_id) }
+
+users = User.order(:created_at).take(10)
+users.each do |user|
+    comments = user.comments.order(:created_at).take(3)
+    comments.each do |comment|
+        comment_id = comment.id
+        user.views.create!(comment_id: comment_id)
+    end
 end

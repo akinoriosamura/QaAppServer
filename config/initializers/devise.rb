@@ -1,3 +1,16 @@
+Rails.application.config.to_prepare do
+  Devise::OmniauthCallbacksController.class_eval do
+    def failure
+      @data = {
+        message: 'authFailure'
+      }
+      html = File.open("app/views/devise_token_auth/omniauth_external_window.html.erb").read
+      template = ERB.new(html).result(binding)
+      render html: template.html_safe
+    end
+  end
+end
+
 # Use this hook to configure devise mailer, warden hooks and so forth.
 # Many of these configuration options can be set straight in your model.
 Devise.setup do |config|
@@ -6,7 +19,7 @@ Devise.setup do |config|
   # confirmation, reset password and unlock tokens in the database.
   # Devise will use the `secret_key_base` as its `secret_key`
   # by default. You can change it below and use your own secret key.
-  # config.secret_key = '5b95aa5cb3e242389591dd5b94c36eae3563b83e09ce5b0903779b153468f5edce8cd7e5642db3e5f7434ce938217bb3b879c4d1b6349aaad1452c386f5472cf'
+  # config.secret_key = '41e39eba70bc0e59600f5c7f3e4d1ca431500a535b94e6248a9b5d780f98574575def8e51ef2bcc4467f52b3b3113b1b2c32b19774dcd06b12b51ed4de32919b'
 
   # ==> Mailer Configuration
   # Configure the e-mail address which will be shown in Devise::Mailer,
@@ -108,7 +121,7 @@ Devise.setup do |config|
   config.stretches = Rails.env.test? ? 1 : 11
 
   # Set up a pepper to generate the hashed password.
-  # config.pepper = 'bd3d4f9d565dc6c5729437d98f8911804ce716ea3662a210f6193ce15acfde85705783ec02573ec76095fe8b023c2ade5595e7abdd8cb0387ddf80cb4fe8811b'
+  # config.pepper = 'd54f3a1b8ad6d2a1bef245eb84c747464470de6bd073cde382dca0baaf79c4ee23d7362610415e64c09fd70b6fad5304754a5d0a064f2f57cda5d36d06cfe0b6'
 
   # Send a notification to the original email when the user's email is changed.
   # config.send_email_changed_notification = false

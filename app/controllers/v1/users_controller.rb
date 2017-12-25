@@ -1,11 +1,10 @@
 module V1
   class UsersController < ApplicationController
-    skip_before_action :authenticate_user_from_token!# , only: [:create]
-    before_action :set_user, only: [:show, :destroy, :update]
+    # before_action :authenticate_user!, only: [:destroy, :update]
+    load_and_authorize_resource
 
     def index
-      users = User.all
-      render json: users, adapter: :json
+      render json: @users, adapter: :json
     end
 
     def show
@@ -15,8 +14,9 @@ module V1
 
     # POST
     # Create an user
+    """
     def create
-      @user = User.new user_params
+      @user = User.new(user_params)
 
       if @user.save!
         render json: @user, serializer: V1::SessionSerializer, root: nil
@@ -24,6 +24,7 @@ module V1
         render json: { error: t('user_create_error') }, status: :unprocessable_entity
       end
     end
+    """
 
     def update
       if @user.update(user_params)
@@ -40,12 +41,8 @@ module V1
 
     private
 
-    def set_user
-      @user = User.find(params[:id])
-    end
-
     def user_params
-      params.require(:user).permit(:name, :email, :password)
+      params.require(:user).permit(:id, :name, :image, :role, :document, :l_price)
     end
   end
 end

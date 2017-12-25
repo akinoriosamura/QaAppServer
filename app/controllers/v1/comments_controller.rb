@@ -1,14 +1,20 @@
 module V1
   class CommentsController < ApplicationController
-    skip_before_action :authenticate_user_from_token!# , only[]
+    before_action :authenticate_user!
+    authorize_resource
     before_action :set_comment, only: [:show, :destroy, :update]
 
     def show
-      render json: @comment, adapter: :json
+      @comment[:pv] += 1
+      if @comment.save
+        render json: @comment, adapter: :json, status: 200
+      else
+        render json: { error: @comment.errors }, status: 422
+      end
     end
 
     def create
-      comment = comment.new(comment_params)
+      comment = Comment.new(comment_params)
       if comment.save
         render json: comment, adapter: :json, status: 201
       else
@@ -37,7 +43,7 @@ module V1
 
     # get content, user_id adn post_id from front.
     def comment_params
-      params.require(:comment).permit(:content, :user_id, :post_id)
+      params.require(:comment).permit(:content, :user_id, :post_id, :pv)
     end
   end
 end
