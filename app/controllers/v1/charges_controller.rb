@@ -21,6 +21,7 @@ module V1
     def charge
       # { user_id: post_user_id, price: price, specialist_id: specialist_id }
       @amount = params[:price]
+      # 10% fee
       @application_fee = (@amount * 0.1).to_i
       @questioner = User.find_by(id: params[:post_user_id])
       @specialist = User.find_by(id: params[:specialist_id])
