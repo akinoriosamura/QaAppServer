@@ -14,6 +14,7 @@ Image is saved in S3 of AWS.
 ## Install
 
  - ruby on rails < 5.0
+ - brew install imagemagick@6
  - other libraries in Gemfile
   └please do `bundle install` in this repository
 
