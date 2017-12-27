@@ -1,6 +1,4 @@
 CarrierWave.configure do |config|
-  config.asset_host = 'http://localhost:3000'
-  """
   config.fog_credentials = {
     provider: 'AWS',
     aws_access_key_id: ENV['aws_access_key_id'],
@@ -11,5 +9,5 @@ CarrierWave.configure do |config|
   # S3のパケット名
   config.fog_directory  = 'qaappserver'
   config.cache_storage = :fog
-  """
+
 end
