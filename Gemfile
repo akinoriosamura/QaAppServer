@@ -47,6 +47,11 @@ gem 'prmd', github: 'interagent/prmd'
 gem 'stripe'
 gem 'omniauth-stripe-connect'
 
+# for image uploader with AWS S3
+gem 'carrierwave'
+gem 'rmagick'
+gem 'fog'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

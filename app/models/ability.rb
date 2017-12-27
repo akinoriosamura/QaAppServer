@@ -13,7 +13,6 @@ class Ability
         can [:myquestions], Post, user_id: user.id
         can [:myanswers], Post, target_id: user.id
         can [:update, :destroy], User, id: user.id
-        can [:update], Image, user_id: user.id
 
     elsif user.questioner?
         can [:index, :show], :all
@@ -23,7 +22,6 @@ class Ability
         can [:myanswers], Post, target_id: user.id
         can [:update, :destroy], User, id: user.id
         can [:update, :destroy], Post, user_id: user.id
-        can [:update], Image, user_id: user.id
 
     elsif user.specialist?
         can [:index, :show], :all
@@ -33,7 +31,6 @@ class Ability
         can [:myanswers], Post, target_id: user.id
         can [:update, :destroy], User, id: user.id
         can [:update, :destroy], [Post, Comment], user_id: user.id
-        can [:update], Image, user_id: user.id
 
     elsif user.bothqs?
         can [:index, :show], :all
@@ -43,7 +40,6 @@ class Ability
         can [:myanswers], Post, target_id: user.id
         can [:update, :destroy], User, id: user.id
         can [:update, :destroy], [Post, Comment], user_id: user.id
-        can [:update], Image, user_id: user.id
 
     # only admin can manage administer page "/admin"
     elsif user.admin?

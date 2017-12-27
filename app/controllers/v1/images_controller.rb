@@ -1,39 +1,33 @@
 module V1
   class ImagesController < ApplicationController
     before_action :authenticate_user!
-    authorize_resource
     def show
       if Image.find_by(user_id: params[:id])
         @image = Image.find_by(user_id: params[:id])
-        send_data @image.file, :type => 'image/jpg,image/jpeg,image/png,image/gif', :disposition => 'inline'
+        send_data @image.profile_image, :type => 'image/jpg,image/jpeg,image/png,image/gif', :disposition => 'inline'
       end
     end
 
     def update
-      upload_file = image_params[:file]
-      @image = {}
-      if upload_file != nil
-        @image[:user_id] = image_params[:user_id]
-        @image[:filename] = image_params[:filename]
-        @image[:file] = upload_file.read
-      end
-      if Image.find_by(user_id: image_params[:user_id])
-        @profile_image = Image.find_by(user_id: image_params[:user_id])
-        @profile_image.update(@image)
-        render json: @profile_image, adapter: :json, status: 200
-      else
-        @image = Image.new(@image)
-        @image.save
-        render json: @image, adapter: :json, status: 200
-      end
-      rescue => e
-        render json: {error: e.message}
+      raise ArgumentError, 'invalid params' if image_params[:profile_image].blank?
+      @user = User.find_by(id: params[:id])
+      @user.profile_image = image_params[:profile_image]
+      @user.save!
+
+      @user = User.find_by(id: params[:id])
+      @user.image = @user.profile_image.url
+      @user.save!
+
+      render json: {
+          profile_image: @user.profile_image,
+          image: @user.image
+      }
     end
 
     private
 
     def image_params
-      params.require(:image).permit(:user_id, :filename, :file)
+      params.require(:image).permit(:profile_image)
     end
   end
 end

@@ -32,6 +32,10 @@ set each variable in env
  - facebook(in facebook develop web site)
   └FACEBOOK_KEY
   └FACEBOOK_SECRET
+ - AWS S3
+  └aws_access_key_id
+  └aws_secret_access_keyz1nkJL9ucwnMSx/JdNr
+  └region
 
 # start
 ## setting DB
