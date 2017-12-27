@@ -51,6 +51,7 @@ gem 'omniauth-stripe-connect'
 gem 'carrierwave'
 gem 'rmagick'
 gem 'fog'
+gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
