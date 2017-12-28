@@ -1,4 +1,4 @@
-# if Rails.env.production?
+if Rails.env.production?
   CarrierWave.configure do |config|
     config.fog_credentials = {
       :provider => 'AWS',
@@ -13,4 +13,4 @@
 #   else
 #     config.asset_host = 'http://localhost:3000'
   end
-# end
+end
