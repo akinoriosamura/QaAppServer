@@ -49,7 +49,7 @@ gem 'omniauth-stripe-connect'
 
 # for image uploader with AWS S3
 gem 'carrierwave'
-gem 'rmagick'
+gem 'mini_magick'
 gem 'fog'
 
 group :development, :test do
